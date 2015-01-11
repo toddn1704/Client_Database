@@ -1,11 +1,12 @@
 """cdbtabledef.py
 
 Developer: Noelle Todd
-Last Updated: August 30, 2014
+Last Updated: December 30, 2014
 
 This module will create 4 tables for the client database, using the
-sqlalchemy module, and the sqlite database. 
-
+sqlalchemy module, and the sqlite database. This module is still in
+early testing stages, and as such, is subject to many changes, and 
+probably contains bugs.
 """
 
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
@@ -16,7 +17,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-engine = create_engine('sqlite:///test2_db.sqlite')
+engine = create_engine('sqlite:///client_db.sqlite')
 session = sessionmaker()
 session.configure(bind=engine)
 
@@ -55,8 +56,8 @@ class Person(base):
 	HH_ID = Column(Integer, ForeignKey('household.id'))
 	household = relationship(Household,
 				backref=backref('members',
-                          uselist=True,
-                          passive_updates=False))
+                                                uselist=True,
+                                                passive_updates=False))
 		
 class Volunteer(base):
 	"""This class creates a table with columns for volunteer data.

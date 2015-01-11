@@ -11,8 +11,10 @@ make a program with no global variables.
 from datetime import datetime, timedelta, date
 from tkinter import *
 from tkinter import ttk
-from cdbifunc import *
+from tkinter import messagebox
+from cdbifunc2 import *
 import cdbvolunteer
+import cdbcustom
 
 class allobjects:
     """This class attempts to contain ALL labels, entries, etc.,
@@ -85,8 +87,7 @@ class allobjects:
 
         #Name Searchbox
         self.ns = StringVar()
-        self.nameSearchEnt = Entry(self.gridframe, cursor = 'shuttle',
-                                   textvariable=self.ns)
+        self.nameSearchEnt = Entry(self.gridframe, textvariable=self.ns)
         self.nameSearchEnt.grid(row=2,column=0)
         self.nameSearchEnt.bind('<Key>',self.nameSearch) 
 
@@ -480,6 +481,8 @@ class allobjects:
                                     command=self.monthlyReport)
         self.reportmenu.add_command(label='View Yearly Report',
                                     command=self.yearlyReport)
+        self.reportmenu.add_command(label='View Custom Report',
+                                    command=self.customReport)
         self.menubar.add_cascade(label='Reports',menu=self.reportmenu)
 
         #add menubar to grid
@@ -492,18 +495,6 @@ class allobjects:
         f.close()
         self.instructions.insert('1.0', instruct)
 
-                                 #"Questions to Ask:\n" +\
-                                  #      "\n1. Has anything changed in your "+\
-                                   #     "family composition?\n"+\
-                                    #    "\nReminders:\n"+\
-                                     #   "\n1. If family has infants, mention"+\
-                                      #  " the Alight Care Center offers "+\
-                                       # "clothing and diapers.\n"+\
-                                        #"\n2. If family has children, see if"+\
-                                        #" there are any milk cards in the "+\
-                                        #"drawer, and offer them one if "+\
-                                        #"there is."
-                                        #)
         self.i_scroll = Scrollbar(self.gridframe)
         self.instructions.config(yscrollcommand=self.i_scroll.set)
         self.i_scroll.config(command=self.instructions.yview)
@@ -1052,6 +1043,7 @@ class allobjects:
 
         #prepopulate volunteer
         self.volv.set(self.volunteerName)
+        ###############self.visv.set(self....?)
         #prepopulate visitor (add test to see if this exists, in case of newclient)
         self.notescv.config(state='normal')
         self.notescv.delete('1.0', END)
@@ -1100,7 +1092,8 @@ class allobjects:
         
 
     def savevisitf(self):
-        """this will connect to Update Visit"""
+        """This will connect to Update Visit.
+        """
         try:
             notes = str(self.notescv.get('1.0', END))
             d = str(self.visdatev.get())
@@ -1175,23 +1168,37 @@ class allobjects:
 
     def monthlyReport(self):
         generate_monthly_report()
+        conf = messagebox.showinfo(title='Info',
+                                   message='Your report has been generated!')
         return
 
     def yearlyReport(self):
         generate_yearly_report()
+        conf = messagebox.showinfo(title='Info',
+                                   message='Your report has been generated!')
         return
 
     def weeklyReport(self):
         generate_weekly_report()
+        conf = messagebox.showinfo(title='Info',
+                                   message='Your report has been generated!')
         return
 
+
+    def customReport(self):
+        """This function allows the user to enter a start and end date
+        for generating the report.
+        """
+        cw = cdbcustom.customwindow()
+        return
+    
 
     def error_popup(self, errmessage):
         """This function implements a simple pop-up window to warn user
         about bad data entry.
         """
         conf = messagebox.showerror(title='Error', message=errmessage)
-
+    
        
     def recordVisit(self):
         """This function will insert a new visit, clear old visit
@@ -1617,10 +1624,16 @@ class allobjects:
         color = cc.askcolor()
         color_name = color[1]
         self.bgcolor = color_name
+        
+        #self.volID = volunteerID #the id of the volunteer who logged in
+        #self.volunteerName = volunteerName
+        #self.bgcolor = bgcolor
+        
+        update_vol(vol_id=self.volID, color=color_name)
         self.ciGui.configure(background=self.bgcolor)
         #for i in range(0, len(self.alllabs)):
          #    self.alllabs[i].configure(bg=self.bgcolor)
-        self.cslabel.configure(self.gridframe, bg=self.bgcolor)
+        #self.cslabel.configure(self.gridframe, bg=self.bgcolor)
         #for lab in self.alllabs:
          #   lab.config(background=self.bgcolor)
         return

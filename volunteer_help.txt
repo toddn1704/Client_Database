@@ -1,0 +1,26 @@
+BASIC INSTRUCTIONS: 
+
+1. Select your name from the list.
+2. Press the 'Login' button to proceed to the database.
+3. Press the 'View' button to see and make changes to your information.
+
+ 
+ADDING NEW VOLUNTEERS:
+
+1. Go to the "Actions" menu and select the "Add New Volunteer" option.
+2. Enter the new volunteer's information.
+3. Press 'Save' to add the new volunteer.
+
+ 
+VIEWING ACTIVE MEMBERS:
+
+1. Go to the "Actions" menu and select the "View Active Volunteers" option.
+2. You will see a list of all volunteers who are currently on the food pantry rotation.
+3. Select a member and press the 'View' button to see the volunteer's information.
+
+ 
+VIEWING ALL MEMBERS:
+
+1. Go to the "Actions" menu and select the "View All Volunteers" option.
+2. You will see a list of all volunteers, whether they are active or not.
+3. Select a member and press the 'View' button to see the volunteer's information.

@@ -190,7 +190,7 @@ def update_visit(s, vis_id, date_of_visit=datetime.now(),
         s.commit()
                  
 	
-def update_volunteer(s, vol_id, firstname, lastname, phonenum, active, color):
+def update_volunteer(s, vol_id, firstname, lastname, phonenum, active, color=None):
 	"""This function will update a volunteer's records.
 	"""
 	vol = s.query(Volunteer).filter(Volunteer.id == vol_id).one()
@@ -198,7 +198,8 @@ def update_volunteer(s, vol_id, firstname, lastname, phonenum, active, color):
 	vol.last_name = lastname
 	vol.phone = phonenum
 	vol.active = active
-	vol.color = color
+	if color != None:
+                vol.color = color
 	s.commit()
 	
 	
@@ -326,9 +327,8 @@ def generate_report(s, duration):
 	csvfile = open(filename, 'w', newline='')	
 	outcsv = csv.writer(csvfile)     
 	
-	#calculate a month ago
+	#calculate a month ago(or a year or week ago)
 	today = datetime.now()
-	#duration = timedelta(days=31)
 	month_ago = today - duration
 	
 	#convert date objects to strings for comparison purposes
@@ -349,8 +349,56 @@ def generate_report(s, duration):
 	outcsv.writerow(records.keys())
 	outcsv.writerows(records)
 
+	#output number of new clients
+	newc = s.query(func.count(Person.first_name))\
+               .filter(Person.date_joined >= month_ago).all()
+	outcsv.writerow(("New individuals:", newc[0]))                               
+
 	#cleanly close database
 	csvfile.close()
 	s.close()
+
+
+def generate_custom(s, start, end):
+        """This function will generate a custom report.
+        """
+        import csv
+        
+        #open file and so on
+        today = datetime.now()
+        filename = str(today.month)+ "-" + str(today.day) + "-" +\
+				str(today.year) + "-report.csv"
+        csvfile = open(filename, 'w', newline='')	
+        outcsv = csv.writer(csvfile) 
+
+        #convert date objects to strings for comparison
+        start = str(start)
+        end = str(end)
+
+        #one giant massive query
+        select = sqlalchemy.sql.select([Person.first_name, Person.last_name,
+					Household.seniors, Household.adults,
+					Household.children, Household.infants,
+                                        Household.total, Household.city,
+                                        Visit.date])\
+					.where(Visit.I_ID == Person.id)\
+					.where(Visit.HH_ID == Household.id)\
+					.where(Visit.date >= start)\
+					.where(Visit.date <= end)
 	
+	#execute query, write rows and column-names to csv	
+        records = s.execute(select)
+        outcsv.writerow(records.keys())
+        outcsv.writerows(records)
+
+        #get number of new clients (individuals)
+        newc = s.query(func.count(Person.first_name))\
+               .filter(Person.date_joined >= start)\
+               .filter(Person.date_joined <= end).all()
+        outcsv.writerow(("New individuals:", newc[0]))
+	
+	#cleanly close database
+        csvfile.close()
+        s.close()
+        
 	

@@ -1,0 +1,38 @@
+CLIENT INFORMATION
+
+NAMES:
+
+1. Type in the client's first name and last name. 
+2. If the client has several names, these can be added to the first name field. 
+
+Ex. First Name: James Tiberius 
+    Last Name: Kirk
+	
+3. If the client has only one name, type it into the last name field.
+
+Ex. First Name:
+    Last Name: Spock
+	
+	
+PHONE NUMBER:
+
+1. For consistency, please enter the phone number with the area code in parenthesis, and all groups of numbers separated by hyphens.
+
+Ex. Phone: (518)-000-0000
+
+2. If there is no phone number, just leave it blank. The field will take anything. You could write a whole story in it. But please don't.
+
+
+DATE OF BIRTH:
+
+1. The entry format is: MONTH  DAY  YEAR
+2. Select a month from the menu.
+3. Type the day into the next box.
+4. Type the year into the next, next box.
+
+
+DATE JOINED:
+
+1. The entry format is: MM/DD/YYYY
+2. This is the date the visitor first came to the food pantry. It will default to today's date.
+2. If you're behind on data entry, type the date in using the following format: MM/DD/YYYY

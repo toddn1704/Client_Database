@@ -1,0 +1,37 @@
+VISIT INFORMATION
+
+ADDING A NEW VISIT:
+
+1. Press the 'New Visit' button.
+2. The 'Date' entry format is: MM/DD/YYYY. It defaults to today.
+3. You can type in notes or leave it blank.
+4. Both the 'Visitor' and the 'Volunteer' will be auto-filled. If one of these are wrong, press 'Cancel' (see below).
+5. IMPORTANT: Remember to press 'Save Visit' when you're done! 
+
+
+CANCELLING A NEW VISIT:
+
+1. If the 'Visitor' field is wrong, you may have selected the wrong household member. At the bottom of the page, select the right name from the 'Household Members' box and press 'View Member'.
+2. If the 'Volunteer' field is wrong, you may be logged in as the wrong person. Go to the 'Volunteers' menu in the left-hand corner, and select 'Log Off'. You will be able to login again as the correct volunteer. 
+
+
+VIEWING PAST VISITS:
+
+1. In the box labelled 'Date', you should see a list of visit dates. 
+2. Select a visit date from this box.
+3. In the box labelled 'Notes', any notes from that visit will appear.
+4. In the box labelled 'Visitor', the name of the person who came on that day will appear. Please note that even if a person is no longer in this household, if they visited to get food for this household, their name will appear.
+5. In the box labelled 'Volunteer', the name of the volunteer who served that day will appear. 
+ 
+ 
+EDITING PAST VISITS:
+
+1. Are there typos in past notes that are driving you crazy? Select the visit from the list.
+2. Press 'Edit', and you can re-type notes, add notes, and so on.
+3. Press 'Save' to keep your edits.
+
+
+DELETING VISITS:
+
+1. ONLY delete a visit if you really, really have to. No record of the visit will remain.
+
